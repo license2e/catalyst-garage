@@ -1,0 +1,146 @@
+section#frame-main article form {
+  padding: 24px 0 28px 0;
+}
+
+#type-parking-spot {
+  width: 215px;
+  margin-left: 105px;
+  border: 1px dotted #777;
+  border-width: 1px 0;
+}
+
+#type-parking-spot input {
+  background: transparent;
+  border: none;
+  width: 98%;
+  margin: auto;
+  display: block;
+  padding: 5px 2px 0px;
+  font-size: 27px;
+  text-align: center;
+  line-height: 29px;
+  outline: none;
+}
+
+#select-floor-group {
+  margin-left: -50px;
+  padding-top: 14px;
+  position: relative;
+  background-image: url(select-floor-group-arrows.png);
+  background-repeat: no-repeat;
+  background-position: 300px 14px;
+  background-size: 53px;
+}
+.select-floor:nth-child(1) {
+  z-index: 50;
+}
+.select-floor:nth-child(2) {
+  z-index: 49;
+}
+.select-floor:nth-child(3) {
+  z-index: 48;
+}
+.select-floor:nth-child(4) {
+  z-index: 47;
+}
+.select-floor:nth-child(5) {
+  z-index: 46;
+}
+.select-floor:nth-child(6) {
+  z-index: 45;
+}
+.select-floor:nth-child(7) {
+  z-index: 44;
+}
+.select-floor:nth-child(8) {
+  z-index: 43;
+}
+.select-floor {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 248px;
+  color: #fff;
+  font-weight: 700;
+  margin: 0 0 -16px 0;
+	-webkit-perspective-origin:   50% 0%;
+	perspective-origin:           50% 0%;
+  -webkit-perspective:  132px;
+  perspective:          132px;
+  cursor: pointer;
+  position: relative;
+}
+.select-floor.selected {
+  -webkit-perspective-origin:   60% 0%;
+  perspective-origin:           60% 0%;
+}
+.select-floor div {
+  background-color: #999;
+  text-align: right;
+  position: relative;
+  -webkit-transform:  rotateX(65deg);
+  transform:          rotateX(65deg);
+  border-radius: 0 0 6px 6px;
+  box-shadow: -9px 9px 5px 0px rgba(22, 22, 22, 0.1); 
+  outline: 0 none;
+  cursor: pointer;
+  margin-top: -12px;
+  -webkit-perspective-origin: 0% 540%;
+  -webkit-perspective: 180px;
+}
+.select-floor.selected div {
+  margin-right: -25px;
+  background-color: #00ad5f;
+}
+.select-floor div input {
+  visibility: hidden;
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  outline: 0 none;
+}
+.select-floor div label {
+  font-size: 36px;
+  line-height: 40px;
+  display: block;
+  padding: 10px 15px 0 0;
+  cursor: pointer;
+  font-weight: 700;
+  font-family: 'Oswald', sans-serif;
+  -webkit-transform: rotateX(2deg);
+  -webkit-transition: font-size .5s ease-in-out; -moz-transition: font-size .5s ease-in-out; transition: font-size .5s ease-in-out;
+}
+.select-floor.selected div label {
+  text-shadow: 0px 0px 2px #000, -2px 2px 12px #fff, 2px -2px 12px #fff;
+}
+body.touch-landscape .select-floor div label {
+  font-size: 28px;
+}
+.selection {
+  padding: 0 15px;
+}
+
+#output {
+  position: absolute;
+  top: 250px;
+  left: 272px;
+  height: 18px;
+  width: 10px;
+  display: none;
+}
+
+/*= Overlay
+------------------------------------------------- * /
+
+#overlay {
+  background-image: url(main-overlay.png);
+  opacity: .3;
+  height: 7336px;
+  width: 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 550;
+}
+/* */

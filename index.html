@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html manifest="" lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <title>app</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <link href="favicon.ico" rel="shortcut icon">
+    <link href="favicon.gif" rel="icon" type="image/gif">
+    <style type="text/css">
+      html, body { margin: 0; padding: 0; background: #d9d9d9; color: #717073; height: 100%; }
+      #app-viewport { width: 100%; height: 100%; }
+      .ease { -webkit-transition: all 1s ease-in-out; -moz-transition: all 1s ease-in-out; transition: all 1s ease-in-out; }
+      #app-viewport section { z-index: 100; position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: -webkit-box; display: box; -webkit-box-orient: vertical; box-orient: vertical; opacity: 1; }
+      section#frame-loading { -webkit-box-align: center; box-align: center; -webkit-box-pack: center; box-pack: center; -webkit-transition: all .5s ease-in-out; -moz-transition: all .5s ease-in-out; transition: all .5s ease-in-out; }
+      section#frame-loading #logo { width: 320px; height: 140px; text-align: center; font-size: 22px; overflow: hidden; margin-top: -140px; background-image: -webkit-radial-gradient(50% 50%,ellipse cover,#fbfbfb 30px,rgba(217,217,217,0) 180px); background-image: radial-gradient(50% 50%,ellipse cover,#fbfbfb 30px,rgba(217,217,217,0) 180px); }
+      section#frame-loading #app-loading #outside { margin: auto; width: 104px; }
+      section#frame-loading #app-loading #outside ul { list-style: none; padding: 0; margin: 0; position: relative; }
+      section#frame-loading #app-loading #outside ul li { background: transparent; height: 0; width: 57px; border-bottom: 13px solid #888; border-left: 24px solid transparent; border-right: 24px solid transparent; -moz-box-shadow: 0 7px 10px -4px #bdbdbd; -webkit-box-shadow: 0 7px 10px -4px #bdbdbd; box-shadow: 0 7px 10px -4px #bdbdbd; }
+      @keyframes lift { 0% {bottom: 0} 100% {bottom: 104px} } @-moz-keyframes lift { 0% {bottom: 0} 100% {bottom: 104px} } @-webkit-keyframes lift { 0% {bottom: 0} 100% {bottom: 104px} }
+      section#frame-loading #app-loading #outside ul li#indi { position: absolute; bottom: 0; left: 0; border-bottom-color: rgba(217,217, 217, 0.8); display: block; animation: lift 1.5s steps(8) infinite; -moz-animation: lift 1.5s steps(8) infinite; -webkit-animation: lift 1.5s steps(8) infinite; animation-play-state: running; -moz-animation-play-state: running; -webkit-animation-play-state: running; }
+      section#frame-loading.hide #app-loading #outside ul li#indi { animation-play-state: paused; -moz-animation-play-state: paused; -webkit-animation-play-state: paused; }
+    </style>
+  </head>
+  <body id="app">
+    <div id="app-viewport">
+      <section id="frame-loading" class=""><div id="logo">Catalyst Garage</div><div id="app-loading"><div id="outside"><ul><li id="indi"></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul></div></div></section>
+    </div>
+    <div id="overlay"></div>
+  </body>
+  <script id="tpl-frame-main" type="text/template">
+    <section id="frame-main">
+      <header>
+        <a id="account" href="#accounts" class="left"></a>
+        <h1 class="center"></h1>
+      </header>
+      <article>
+        <form id="park-form" action="#" method="get">
+          <div id="type-parking-spot">
+            <input type="tel" name="parking-spot" value="" placeholder="Enter Parking Spot" />
+          </div>
+          <div id="select-floor-group">
+            <div class="select-floor">
+              <div><input id="floor-8" type="radio" name="floor" value="8"> <label for="floor-8">8</label></div>
+            </div>
+            <div class="select-floor">
+              <div><input id="floor-7" type="radio" name="floor" value="7"> <label for="floor-7">7</label></div>
+            </div>
+            <div class="select-floor">
+              <div><input id="floor-6" type="radio" name="floor" value="6"> <label for="floor-6">6</label></div>
+            </div>
+            <div class="select-floor">
+              <div><input id="floor-5" type="radio" name="floor" value="5"> <label for="floor-5">5</label></div>
+            </div>
+            <div class="select-floor">
+              <div><input id="floor-4" type="radio" name="floor" value="4"> <label for="floor-4">4</label></div>
+            </div>
+            <div class="select-floor">
+              <div><input id="floor-3" type="radio" name="floor" value="3"> <label for="floor-3">3</label></div>
+            </div>
+            <div class="select-floor">
+              <div><input id="floor-2" type="radio" name="floor" value="2"> <label for="floor-2">2</label></div>
+            </div>
+            <div class="select-floor">            
+              <div><input id="floor-1" type="radio" name="floor" value="1"> <label for="floor-1">1</label></div>
+            </div>
+          </div>
+        </form>
+        <div id="output"></div>
+      </article>
+      <footer>
+        <a id="find-it" href="#find-it"><span>Find It</span></a>
+        <a id="park-it" href="#park-it" class="selected"><span>Park It</span></a>
+      </footer>
+    </section>
+  </script>
+  <script type="text/javascript">
+    var CADRE = {
+      version: '1.0.0'
+      , LOADING: 'frame-loading'
+      /* ------------------------------------------------- */
+      , TPL : {
+        'css': '<link rel="stylesheet" href="{{path}}" type="text/css">'
+        , 'js': '<script src="{{path}}" type="text/javascript"><\/'+'script>'
+        , 'meta': '<meta name="{{name}}" content="{{content}}">'
+        , 'link': '<link href="{{path}}" rel="{{rel}}" sizes="{{sizes}}">'   
+      }
+      , LOADING_FRAME: null , TPL_FRAME: {}, OBJ: null, OBJ_FRAME: {}
+      , ns: function (namespaces) {
+    		var names = namespaces.split('.'), len, ns = CADRE, i; if (names[0].toUpperCase() == 'CADRE') { names.splice(0,1); }
+    		for (i = 0, len = names.length; i < len; i++) { ( !ns[names[i]] && (ns[names[i]] = {}) ); ns = ns[names[i]]; }
+    	}
+      , extend: function(o, s) { 
+        for (var p in s) { 
+          o[p] = s[p]; 
+        } 
+        return o 
+      }
+      , replace_tpl: function(tpl, repl, func){
+        if ( undefined == func ){
+          func = function(s, key){ return repl[key] || s; }
+        }
+        return tpl.replace(/\{\{(.*?)\}\}/g, function(s, key){ return func(s, key); });
+      }
+      , process_options: function(opts, options) {
+        if('string' == typeof opts ){
+          options.key = opts;
+          options.obj = this.OBJ[options.key] || [];
+        } else if ( 'object' == typeof opts ){
+          options = this.extend(opts, options);
+        }
+        options.tpl = this.TPL[options.key] || '';
+        return options;
+      }
+      , process_script: function(r, c) {
+        return function(){
+          var p = r.path || null, s = document.createElement('script'), x = document.getElementsByTagName('script')[0];
+          if( null != p ){
+            s.type = 'text/javascript'; 
+            s.async = false; 
+            s.src = p;
+            if( undefined != c ){ 
+              s.onload = function(){
+                c();
+              }
+            }
+            x.parentNode.appendChild(s);
+          } else {
+            cb();
+          }
+        };
+      }
+      , iterate_load: function(opts) {
+        var i, length, options = {
+            key: ''
+            , obj: []
+            , tpl: ''
+            , debug: false
+            , sequence: false
+            , callback: function(){ return true; }
+          }
+          , options = this.process_options(opts, options);
+
+        if( true === options.debug ){
+          console.log(options);
+        } else if( 'js' == options.key ){
+          var lcb = options.callback;
+          for ( i = options.obj.length; i > 0; i-- ) {
+            var j = (i-1), repl = options.obj[(i-1)];
+            lcb = this.process_script(repl, lcb); 
+          }
+          lcb();
+        } else {
+          for ( i = 0, length = options.obj.length; i < length; i++ ) {
+            var rplcd = this.replace_tpl(options.tpl, options.obj[i]);
+            document.head.innerHTML += rplcd;
+          }
+          options.callback();
+        }
+      }
+      , load: function(app){
+          this.OBJ = app;
+          if( null != this.OBJ && {} != this.OBJ ){
+            this.LOADING_FRAME = document.getElementById(this.LOADING.replace('#',''));
+            //setTimeout(function(){
+              CADRE.iterate_load('css');
+              CADRE.iterate_load('js');
+              CADRE.iterate_load('meta');
+              //CADRE.iterate_load('link');
+            //},2000);
+          }
+        }
+      , loading_frame: function(toggle){
+        if( toggle == 'hide' ){
+          this.LOADING_FRAME.className = (this.LOADING_FRAME.className != '') ? this.LOADING_FRAME.className + ' hide' : 'hide';
+        } else {
+          this.LOADING_FRAME.className = this.LOADING_FRAME.className.replace('hide','');
+        }
+      }
+    };;
+    /* */
+    CADRE.load({
+      'id': 'app-id'
+      , 'css': [
+        { 
+          'path': 'fonts.css?1' 
+        }
+        , {
+          'path': 'style.css?5'
+        }
+        , {
+          'path': 'main.css?2'
+        }
+      ]
+      , 'js': [
+        { 
+          'path': 'jquery-1.9.1.min.js'
+        }
+        , { 
+          'path': 'app.js?10'
+        }
+      ]
+      , 'meta': [
+        { 
+          'name': 'apple-mobile-web-app-capable'
+          , 'content': 'yes' 
+          }
+        , { 
+          'name': 'apple-touch-fullscreen'
+          , 'content': 'yes' 
+        }
+      ]
+      /* * /
+      , 'link': [
+        { 
+          'path': 'apple-touch-icon-57x57.png'
+          , 'rel': 'apple-touch-icon'
+          , 'sizes': null
+        }
+        , { 
+          'path': 'apple-touch-icon-72x72.png'
+          , 'rel': 'apple-touch-icon'
+          , 'sizes': '72x72'
+        }
+        , { 
+          'path': 'apple-touch-icon-114x114.png'
+          , 'rel': 'apple-touch-icon'
+          , 'sizes': '114x114'
+        }
+        , { 
+          'path': 'apple-touch-icon-144x144.png'
+          , 'rel': 'apple-touch-icon'
+          , 'sizes': '144x144'
+        }
+        , { 
+          'path': 'apple-touch-icon-1024x1024.png'
+          , 'rel': 'apple-touch-icon'
+          , 'sizes': '1024x1024'
+        }
+      ]
+      /* */
+    });;
+    /* */
+  </script>
+</html>

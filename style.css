@@ -1,0 +1,147 @@
+/*= Reset
+------------------------------------------------- */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;font-size:100%;font-family:inherit;vertical-align:baseline}
+
+/*= Global
+------------------------------------------------- */
+body, a {
+  color: #717073;
+}
+body, a, div, form, input {
+  font: 400 18px/20px 'PT Sans Narrow',Arial,sans-serif;
+}
+a {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-touch-callout: none;
+}
+input {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+/*= Vieport
+------------------------------------------------- */
+#app-viewport section {
+  z-index: 500;
+  min-width: 320px;
+}
+#app-viewport section.hide {
+  bottom: 200%;
+  top: -170px;
+}
+
+/*= Viewport Sections
+------------------------------------------------- */
+section#frame-login {
+  -webkit-box-align: center;
+  box-align: center;
+  -webkit-box-pack: center;
+  box-pack: center;
+  background-image: -webkit-gradient(radial,50%,0,50%,250,color-stop(0%,#1B2835),color-stop(100%,#161616));
+  background-image: -webkit-radial-gradient(center,circle cover,#1B2835 0,#161616 250px);
+  background-image: radial-gradient(center,circle cover,#1B2835 0,#161616 250px);
+}
+
+section#frame-main {
+  background-color: #fff;
+}
+
+section#frame-accounts {
+  background-color: #ccc;
+}
+
+section#frame-settings {
+  background-color: #ccc;
+}
+
+/*= Specifics
+------------------------------------------------- */
+
+section#frame-main.reveal {
+  -webkit-transform: translateX(260px);
+}
+
+section#frame-main header {
+  height: 43px;
+  border-bottom: 1px solid #b9b9b9;
+  background: -webkit-linear-gradient(top, #ededed, #fff);
+  background: linear-gradient(top, #ededed, #fff);
+  position: relative;
+}
+
+section#frame-main header h1 {
+  margin: 0 64px;
+  text-align: center;
+  background-image: url(plus-garage-logo.png);
+  background-repeat: no-repeat;
+  height: 43px;
+  overflow: hidden;
+  background-size: 120px;
+  background-position: center center;
+  min-width: 192px;
+}
+
+section#frame-main #account {
+  height: 16px;
+  width: 34px;
+  border-radius: 3px;
+  border: 1px solid #d6d6d6;
+  position: absolute;
+  margin: 7px 0 0 7px;
+  padding: 6px 7px;
+  background-image: url(accounts-bkg.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 32px;
+  background-color: #fafafa;
+}
+
+section#frame-main footer {
+  height: 47px;
+  border-top: 1px solid #b9b9b9;
+  background: -webkit-linear-gradient(top, #fff, #ededed);
+  background: linear-gradient(top, #fff, #ededed);
+  position: relative;
+}
+
+section#frame-main footer a {
+  font-weight: bold;
+  min-width: 50%;
+  display: inline-block;
+  text-align: center;
+  padding: 26px 0 0 0;
+  margin: -1px 0 0 0;
+  text-decoration: none;
+}
+
+section#frame-main footer a.selected {
+  border-top: 1px solid #00ac5f;
+  color: #00ac5f;
+  background-image: url(footer-button-selected-bkg.png);
+}
+
+section#frame-main footer a span {
+  background-repeat: no-repeat;
+  background-position: center 1px;
+  background-size: 24px;
+  padding: 24px 0 0 0;
+  font-size: 14px;
+}
+
+section#frame-main footer a#find-it {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+section#frame-main footer a#park-it {
+  margin-left: 50%;
+}
+
+section#frame-main footer a#find-it span {
+  background-image: url(icon-find-it.png);
+  background-size: 20px;
+}
+
+section#frame-main footer a#park-it span {
+  background-image: url(icon-park-it.png);
+}
